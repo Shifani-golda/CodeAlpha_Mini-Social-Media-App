@@ -1,0 +1,15 @@
+{% extends 'socialapp/base.html' %}
+{% load static %}
+{% block content %}
+
+<h2>Edit Your Profile</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+</form>
+
+<a href="{% url 'profile' profile_user.username %}">Back to Profile</a>
+
+{% endblock %}
