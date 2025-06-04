@@ -15,7 +15,6 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['image', 'caption']
 
-
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
