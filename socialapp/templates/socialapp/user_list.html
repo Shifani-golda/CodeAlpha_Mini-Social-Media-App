@@ -1,4 +1,63 @@
 {% extends 'socialapp/base.html' %}
+{% block content %}
+
+<style>
+  h2 {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: #1a73e8;
+    margin-bottom: 25px;
+  }
+
+  ul {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  ul li {
+    background: #f0f4ff;
+    margin: 10px 0;
+    padding: 15px 20px;
+    border-radius: 25px;
+    box-shadow: 0 6px 15px rgba(26,115,232,0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  ul li:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 25px rgba(26,115,232,0.25);
+  }
+
+  ul li a {
+    text-decoration: none;
+    color: #1a73e8;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  ul li a:hover {
+    text-decoration: underline;
+    color: #004a99;
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    ul {
+      max-width: 90%;
+      padding: 0 10px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+  }
+</style>
 
 <h2>All Users</h2>
 <ul>
@@ -6,3 +65,5 @@
     <li><a href="{% url 'profile' user.username %}">{{ user.username }}</a></li>
   {% endfor %}
 </ul>
+
+{% endblock %}

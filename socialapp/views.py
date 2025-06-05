@@ -7,15 +7,29 @@ from .models import Post, Like
 @login_required
 def home(request):
     posts = Post.objects.all().order_by('-created_at')
-    user_liked_posts = []
 
+    user_liked_posts = []
     if request.user.is_authenticated:
         user_liked_posts = Like.objects.filter(user=request.user).values_list('post_id', flat=True)
+
+    # ✅ Add this loop to attach liked usernames to each post
+    for post in posts:
+        likes = post.likes.all()
+        liked_users = [like.user for like in likes]
+        post.like_count = likes.count()
+
+        if liked_users:
+            post.first_liker = liked_users[0]
+            post.other_likers_count = len(liked_users) - 1
+        else:
+            post.first_liker = None
+            post.other_likers_count = 0
 
     return render(request, 'socialapp/home.html', {
         'posts': posts,
         'user_liked_posts': user_liked_posts,
     })
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterForm
@@ -107,7 +121,7 @@ def delete_post(request, post_id):
 
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
-from .models import Profile, Post
+from .models import Profile, Post, Like  # 🔸 Make sure Like is imported
 
 def profile_view(request, username):
     from django.contrib.auth.models import User
@@ -119,12 +133,25 @@ def profile_view(request, username):
     if request.user.is_authenticated:
         user_liked_posts = Like.objects.filter(user=request.user).values_list('post_id', flat=True)
 
+    for post in posts:
+        likes = post.likes.all()
+        liked_users = [like.user for like in likes]  # full User objects
+        post.like_count = likes.count()
+
+        if liked_users:
+            post.first_liker = liked_users[0]  # First user who liked
+            post.other_likers_count = len(liked_users) - 1
+        else:
+            post.first_liker = None
+            post.other_likers_count = 0
+
     return render(request, 'socialapp/profile.html', {
         'profile_user': profile_user,
         'profile': profile,
         'posts': posts,
         'user_liked_posts': user_liked_posts,
     })
+
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
@@ -141,7 +168,7 @@ def edit_profile(request, username):
     if request.user != profile_user:
         return HttpResponseForbidden("Not allowed")
 
-    profile = profile_user.userprofile
+    profile = profile_user.profile
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=profile)
@@ -166,7 +193,7 @@ def follow_user(request, username):
         return HttpResponseForbidden("You cannot follow yourself.")
     if request.method != 'POST':
         return HttpResponseForbidden("Only POST requests allowed.")
-    user_profile = UserProfile.objects.get(user=user_to_follow)
+    user_profile = Profile.objects.get(user=user_to_follow)
     user_profile.followers.add(request.user)
     return redirect('profile', username=username)
 
@@ -177,15 +204,27 @@ def unfollow_user(request, username):
         return HttpResponseForbidden("You cannot unfollow yourself.")
     if request.method != 'POST':
         return HttpResponseForbidden("Only POST requests allowed.")
-    user_profile = UserProfile.objects.get(user=user_to_unfollow)
+    user_profile = Profile.objects.get(user=user_to_unfollow)
     user_profile.followers.remove(request.user)
     return redirect('profile', username=username)
 
 def followers_list(request, username):
     user = get_object_or_404(User, username=username)
-    profile = user.userprofile
+    profile = user.profile
     followers = profile.followers.all()
-    return render(request, 'socialapp/followers_list.html', {'followers': followers})
+    return render(request, 'socialapp/followers_list.html', {'profile_user': user, 'followers': followers})
+
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.models import User
+
+def following_list(request, username):
+    user = get_object_or_404(User, username=username)
+    following = User.objects.filter(profile__followers=user)
+
+    return render(request, 'socialapp/following_list.html', {
+        'profile_user': user,
+        'following': following,
+    })
 
 def user_list(request):
     users = User.objects.exclude(username=request.user.username)

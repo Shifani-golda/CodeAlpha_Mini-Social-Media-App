@@ -2,6 +2,97 @@
 {% load static %}
 {% block content %}
 
+<style>
+    h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    form {
+        max-width: 600px;
+        margin: 0 auto 30px auto;
+        padding: 30px 25px;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+
+    form:hover {
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.15);
+    }
+
+    form p {
+        margin-bottom: 18px;
+    }
+
+    form label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 7px;
+        color: #333;
+    }
+
+    form input[type="text"],
+    form input[type="file"],
+    form textarea,
+    form select {
+        width: 100%;
+        padding: 12px 14px;
+        font-size: 1rem;
+        border: 1.8px solid #ccc;
+        border-radius: 10px;
+        transition: border-color 0.3s ease;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    form input:focus,
+    form textarea:focus,
+    form select:focus {
+        border-color: #0077cc;
+        outline: none;
+    }
+
+    button[type="submit"] {
+        display: block;
+        width: fit-content;
+        margin: 30px auto 0 auto;
+        background-color: #0077cc;
+        color: white;
+        padding: 12px 32px;
+        border: none;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #005fa3;
+        transform: translateY(-2px);
+    }
+
+    a {
+        display: block;
+        max-width: 600px;
+        margin: 10px auto 0 auto;
+        text-align: center;
+        font-weight: 600;
+        color: #555;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: #0077cc;
+        text-decoration: underline;
+    }
+</style>
+
 <h2>Edit Your Profile</h2>
 
 <form method="POST" enctype="multipart/form-data">

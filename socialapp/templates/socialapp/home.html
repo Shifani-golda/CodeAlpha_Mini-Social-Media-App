@@ -2,6 +2,295 @@
 {% load static %}
 {% block content %}
 
+<div style="
+       background: linear-gradient(to right, #dbeeff, #eef8ff);
+       padding: 25px;
+       margin-bottom: 30px;
+       border-left: 6px solid #1976d2;
+       border-radius: 12px;
+       box-shadow: 0 4px 20px rgba(0, 123, 255, 0.1);
+       backdrop-filter: blur(5px);
+       animation: fadeIn 1s ease;
+    ">
+       <h2 style="color: #1456b8; margin-bottom: 12px;">🌟 Why <span style="color:#1976d2;">Minglo</span>?</h2>
+       <ul style="padding-left: 20px; line-height: 1.8; color: #333;">
+         <li>🔹 <strong>Short & Memorable:</strong> Just 6 letters, easy to type and recall.</li>
+         <li>🔹 <strong>Playful Yet Professional:</strong> Sounds fun like “mingle”, but clean for serious use.</li>
+         <li>🔹 <strong>Unique & Brandable:</strong> Not a common word, perfect for a unique identity.</li>
+         <li>🔹 <strong>Social Vibes:</strong> Instantly suggests interaction, networking, and connection.</li>
+         <li>🔹 <strong>Aesthetic Appeal:</strong> Looks soft and modern: <em>minglo, Minglo, or Mïnglō</em>.</li>
+       </ul>
+       <p style="margin-top: 15px; font-style: italic; color: #555; font-size: 1.05rem;">
+         <strong>Minglo – Where Moments Connect.</strong>
+       </p>
+    </div>
+
+<style>
+
+  h3 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #222;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  /* Post container */
+  div[style*="border: 1px solid"] {
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+    padding: 20px 25px;
+    background: white;
+    transition: box-shadow 0.3s ease;
+  }
+  div[style*="border: 1px solid"]:hover {
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  }
+
+  /* User info & avatar */
+  div[style*="display: flex"] {
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 12px;
+  }
+  div[style*="display: flex"] img {
+    border-radius: 50%;
+    width: 55px !important;
+    height: 55px !important;
+    object-fit: cover;
+    border: 2px solid #1a73e8;
+    transition: transform 0.3s ease;
+  }
+  div[style*="display: flex"]:hover img {
+    transform: scale(1.1);
+  }
+  div[style*="display: flex"] strong a {
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1a73e8;
+    transition: color 0.3s ease;
+  }
+  div[style*="display: flex"] strong a:hover {
+    color: #004a99;
+    text-decoration: underline;
+  }
+
+  /* Post image */
+  img[alt^="Image for"] {
+    max-width: 100%;
+    border-radius: 15px;
+    margin: 10px 0;
+    box-shadow: 0 6px 18px rgba(26, 115, 232, 0.2);
+    transition: transform 0.3s ease;
+  }
+  img[alt^="Image for"]:hover {
+    transform: scale(1.02);
+  }
+
+  /* Like button and count */
+  form[style*="display:inline;"] button {
+    background-color: #1a73e8;
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 6px 15px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+  }
+  form[style*="display:inline;"] button:hover {
+    background-color: #004a99;
+  }
+  span {
+    font-weight: 600;
+    color: #444;
+    font-size: 1rem;
+  }
+
+  /* Liked by section */
+  div > p strong {
+    color: #1a73e8;
+    font-weight: 700;
+  }
+  div > p a {
+    color: #1a73e8;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  div > p a:hover {
+    text-decoration: underline;
+    color: #004a99;
+  }
+
+  /* Caption */
+  p strong {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  p {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #444;
+  }
+
+  /* Comments section */
+  div[style*="margin-top: 10px"] {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+  }
+  div[style*="margin-top: 10px"] > div {
+    margin-left: 25px;
+    margin-bottom: 12px;
+    background: #f5f9ff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(26, 115, 232, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  div[style*="margin-top: 10px"] > div:hover {
+    background-color: #d7e6ff;
+  }
+  div[style*="margin-top: 10px"] p strong {
+    color: #1a73e8;
+  }
+  div[style*="margin-top: 10px"] small {
+    font-size: 0.8rem;
+    color: #666;
+  }
+  div[style*="margin-top: 10px"] p {
+    margin: 4px 0;
+  }
+
+  /* Add comment textarea */
+  form[style*="margin-top: 5px;"] textarea {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 12px;
+    border: 1.8px solid #ddd;
+    padding: 8px 12px;
+    font-size: 1rem;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+  }
+  form[style*="margin-top: 5px;"] textarea:focus {
+    border-color: #1a73e8;
+    outline: none;
+  }
+  form[style*="margin-top: 5px;"] button {
+    margin-top: 8px;
+    background-color: #1a73e8;
+    border: none;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  form[style*="margin-top: 5px;"] button:hover {
+    background-color: #004a99;
+  }
+
+  /* Login prompt */
+  p em {
+    font-style: italic;
+    color: #777;
+    font-size: 1rem;
+  }
+
+  /* Edit & Delete links */
+  a[href*="edit_post"], a[href*="delete_post"] {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #1a73e8;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+  }
+  a[href*="edit_post"]:hover, a[href*="delete_post"]:hover {
+    text-decoration: underline;
+    color: #004a99;
+  }
+
+  /* Posted date */
+  small {
+    display: block;
+    color: #888;
+    font-size: 0.85rem;
+    margin-top: 10px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    div[style*="border: 1px solid"] {
+      margin: 0 10px 25px 10px;
+      padding: 15px 20px;
+    }
+    div[style*="display: flex"] {
+      gap: 8px;
+    }
+    div[style*="display: flex"] img {
+      width: 45px !important;
+      height: 45px !important;
+    }
+    form[style*="margin-top: 5px;"] textarea {
+      font-size: 0.95rem;
+    }
+    form[style*="display:inline;"] button {
+      font-size: 0.9rem;
+      padding: 6px 12px;
+    }
+  }
+
+  @keyframes fadeIn {
+     from { opacity: 0; transform: translateY(20px); }
+     to { opacity: 1; transform: translateY(0); }
+  }
+
+  .action-btn {
+    display: inline-block;
+    padding: 6px 14px;
+    margin-right: 10px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .edit-btn {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    border: 1px solid #90caf9;
+  }
+
+  .edit-btn:hover {
+    background-color: #bbdefb;
+    color: #0d47a1;
+  }
+
+  .delete-btn {
+    background-color: #fdecea;
+    color: #d32f2f;
+    border: 1px solid #f5c6cb;
+  }
+
+  .delete-btn:hover {
+    background-color: #f8d7da;
+    color: #b71c1c;
+  }
+
+</style>
+
 <h3>All Posts</h3>
 
 {% for post in posts %}
@@ -39,6 +328,20 @@
                 </form>
             {% endif %}
             <span>{{ post.like_count }} like{{ post.like_count|pluralize }}</span>
+
+            {% if post.first_liker %}
+                <p>
+                    <strong>Liked by:</strong>
+                    <a href="{% url 'profile' post.first_liker.username %}">{{ post.first_liker.username }}</a>
+                    {% if post.other_likers_count > 0 %}
+                        and {{ post.other_likers_count }} other{{ post.other_likers_count|pluralize }} liked this
+                    {% else %}
+                        liked this
+                    {% endif %}
+                </p>
+            {% else %}
+                <p>No likes yet.</p>
+            {% endif %}
         </div>
 
         <p><strong>Caption:</strong> {{ post.caption }}</p>
@@ -65,10 +368,19 @@
            <p><em>Login to comment.</em></p>
         {% endif %}
 
+        {% if post.user == request.user %}
+          <div style="margin-top: 10px;">
+             <a href="{% url 'edit_post' post.id %}" class="action-btn edit-btn">✏️ Edit</a>
+             <a href="{% url 'delete_post' post.id %}" class="action-btn delete-btn">🗑️ Delete</a>
+          </div>
+        {% endif %}
+
+
+
         <small>Posted on {{ post.created_at }}</small>
     </div>
 {% empty %}
-    <p>No posts available yet.</p>
+    <p style="text-align: center; font-size: 1.3rem; color: #666;">No posts available yet.</p>
 {% endfor %}
 
 {% endblock %}

@@ -1,23 +1,131 @@
+{% load static %}
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Mini Social App</title>
+    <meta charset="UTF-8">
+    <title>Minglo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'images/minglo_logo.png' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #f0f4ff, #eaf6f6);
+            color: #333;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 240px;
+            width: 100%;
+            animation: fadeInLogo 1s ease-in-out;
+        }
+
+        .logo-container img {
+            height: 240px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeInLogo {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .welcome-msg {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #444;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            margin-right: 15px;
+            color: #0077cc;
+            font-weight: 600;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+            background-color: #0077cc;
+            padding: 6px 12px;
+            border-radius: 8px;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px solid #bbb;
+        }
+
+        @media screen and (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav a {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h2>Mini Social Media</h2>
-    {% if user.is_authenticated %}
-       Welcome, {{ user.username }} |
-       <a href="{% url 'home' %}">Home</a> |
-       <a href="{% url 'create_post' %}">Create Post</a> |
-       <a href="{% url 'profile' user.username %}">👤 My Profile</a> |
-       <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-       <a href="{% url 'login' %}">Login</a> |
-       <a href="{% url 'register' %}">Register</a>
-    {% endif %}
 
-    <hr>
-    {% block content %}{% endblock %}
+<header>
+    <div class="logo-container">
+        <img src="{% static 'images/minglo_logo.png' %}" alt="Minglo Logo">
+    </div>
+    <div class="welcome-msg">
+        {% if user.is_authenticated %}
+            Welcome, {{ user.username }}
+        {% endif %}
+    </div>
+</header>
+
+<nav>
+    {% if user.is_authenticated %}
+        <a href="{% url 'home' %}">🏠 Home</a>
+        <a href="{% url 'create_post' %}">➕ Create Post</a>
+        <a href="{% url 'profile' user.username %}">👤 My Profile</a>
+        <a href="{% url 'logout' %}">🚪 Logout</a>
+    {% else %}
+        <a href="{% url 'login' %}">🔐 Login</a>
+        <a href="{% url 'register' %}">📝 Register</a>
+    {% endif %}
+</nav>
+
+<hr>
+
+{% block content %}{% endblock %}
+
 </body>
 </html>

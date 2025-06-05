@@ -2,82 +2,349 @@
 {% load static %}
 {% block content %}
 
+<style>
+  /* Container */
+  h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #1a73e8;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .profile-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+
+  .profile-pic {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    box-shadow: 0 6px 15px rgba(26,115,232,0.3);
+    transition: transform 0.3s ease;
+  }
+  .profile-pic:hover {
+    transform: scale(1.05);
+  }
+
+  .profile-info {
+    max-width: 400px;
+    text-align: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.1rem;
+    color: #333;
+  }
+
+  .profile-info strong {
+    color: #1a73e8;
+  }
+
+  .bio {
+    white-space: pre-wrap;
+    margin-top: 10px;
+    font-style: italic;
+    color: #555;
+  }
+
+  .follow-btn {
+    margin-top: 15px;
+    padding: 12px 25px;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 5px 15px rgba(26,115,232,0.4);
+  }
+  .follow-btn:hover {
+    background-color: #004a99;
+  }
+
+  a.edit-profile-link {
+    display: inline-block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #1a73e8;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  a.edit-profile-link:hover {
+    border-color: #1a73e8;
+  }
+
+  /* Posts container */
+  .posts-container {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .post-card {
+    background: white;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+  }
+
+  .post-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 15px;
+  }
+
+  .caption {
+    font-size: 1.15rem;
+    color: #222;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .post-date {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 15px;
+  }
+
+  .likes-section {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #1a73e8;
+  }
+  .likes-section strong {
+    font-weight: 700;
+  }
+
+  /* Like/Unlike button */
+  .like-form button {
+    background: #e0245e;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+  }
+  .like-form button:hover {
+    background-color: #a91d48;
+  }
+  .like-form button.unlike {
+    background: #bbb;
+    color: #444;
+  }
+  .like-form button.unlike:hover {
+    background: #888;
+  }
+
+  /* Comments section */
+  .comments-section {
+    margin-top: 20px;
+  }
+
+  .comments-section h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .comment {
+    background: #f5f5f5;
+    border-radius: 12px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+  .comment strong {
+    color: #1a73e8;
+  }
+
+  /* Comment form */
+  .comment-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .comment-form input[type="text"] {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1.5px solid #ddd;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  .comment-form input[type="text"]:focus {
+    outline: none;
+    border-color: #1a73e8;
+    box-shadow: 0 0 8px rgba(26,115,232,0.4);
+  }
+  .comment-form button {
+    background: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .comment-form button:hover {
+    background-color: #004a99;
+  }
+
+  /* Edit/Delete Links */
+  .post-actions {
+    margin-top: 15px;
+  }
+  .post-actions a {
+    margin-right: 15px;
+    text-decoration: none;
+    font-weight: 700;
+    color: #1a73e8;
+    transition: color 0.3s ease;
+  }
+  .post-actions a:hover {
+    color: #004a99;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .profile-header {
+      flex-direction: column;
+      gap: 20px;
+    }
+    .profile-info {
+      max-width: 100%;
+      text-align: center;
+    }
+    .posts-container {
+      max-width: 100%;
+      padding: 0 10px;
+    }
+  }
+</style>
+
 <h2>{{ profile_user.username }}'s Profile</h2>
 
-{% if request.user != profile_user %}
-    {% if request.user in profile.followers.all %}
-        <form action="{% url 'unfollow_user' profile_user.username %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Unfollow</button>
-        </form>
+<div class="profile-header">
+    {% if profile.profile_pic %}
+        <img src="{{ profile.profile_pic.url }}" alt="Profile picture" class="profile-pic">
     {% else %}
-        <form action="{% url 'follow_user' profile_user.username %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Follow</button>
-        </form>
+        <img src="{% static 'default.png' %}" alt="Default profile" class="profile-pic">
     {% endif %}
-{% endif %}
-
-<p><strong>Followers:</strong> {{ profile.followers.count }}</p>
-
-{% if request.user == profile_user %}
-    <a href="{% url 'edit_profile' profile_user.username %}">Edit Profile</a>
-{% endif %}
-
-{% if profile.profile_pic %}
-    <img src="{{ profile.profile_pic.url }}" width="150" height="150" style="border-radius: 50%;">
-{% else %}
-    <img src="{% static 'default.png' %}" width="150" height="150" style="border-radius: 50%;">
-{% endif %}
-
-<p><strong>Bio:</strong> {{ profile.bio|linebreaks }}</p>
-
-<h3>Posts by {{ profile_user.username }}</h3>
-{% for post in posts %}
-    <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
-        {% if post.image %}
-            <img src="{{ post.image.url }}" width="300"><br>
-        {% endif %}
-
-        <p><strong>Caption:</strong> {{ post.caption }}</p>
-        <small>Posted on {{ post.created_at }}</small>
-
-        <!-- 👍 Like count and like/unlike form -->
-        <p>
-            <strong>Likes:</strong> {{ post.like_set.count }}
-        </p>
-
-        {% if user.is_authenticated %}
-            <form method="post" action="{% url 'toggle_like' post.id %}">
-                {% csrf_token %}
-                {% if post.id in user_liked_posts %}
-                     <button type="submit">💔 Unlike</button>
-                {% else %}
-                     <button type="submit">❤️ Like</button>
-                {% endif %}
-            </form>
-        {% endif %}
-
-        <!-- 💬 Comment Section -->
-        <div style="margin-top: 10px;">
-            <h4>Comments:</h4>
-            {% for comment in post.comment_set.all %}
-                <p><strong>{{ comment.user.username }}:</strong> {{ comment.content }}</p>
-            {% empty %}
-                <p>No comments yet.</p>
-            {% endfor %}
-
-            {% if user.is_authenticated %}
-                <form method="post" action="{% url 'add_comment' post.id %}">
+    <div class="profile-info">
+        {% if request.user != profile_user %}
+            {% if request.user in profile.followers.all %}
+                <form action="{% url 'unfollow_user' profile_user.username %}" method="post">
                     {% csrf_token %}
-                    <input type="text" name="content" placeholder="Add a comment..." required style="width: 80%;">
-                    <button type="submit">Post</button>
+                    <button type="submit" class="follow-btn">Unfollow</button>
+                </form>
+            {% else %}
+                <form action="{% url 'follow_user' profile_user.username %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="follow-btn">Follow</button>
                 </form>
             {% endif %}
-        </div>
+        {% endif %}
+
+        <p><strong>Followers:</strong> <a href="{% url 'followers_list' profile_user.username %}">{{ profile.followers.count }}</a></p>
+
+        <p><strong>Following:</strong> <a href="{% url 'following_list' profile_user.username %}">{{ profile_user.following.count }}</a></p>
+
+        {% if request.user == profile_user %}
+            <a href="{% url 'edit_profile' profile_user.username %}" class="edit-profile-link">Edit Profile</a>
+        {% endif %}
+
+        <p class="bio"><strong>Bio:</strong><br> {{ profile.bio|linebreaks }}</p>
     </div>
-{% empty %}
-    <p>No posts yet.</p>
-{% endfor %}
+</div>
+
+<div class="posts-container">
+    <h3>Posts by {{ profile_user.username }}</h3>
+    {% for post in posts %}
+        <div class="post-card">
+            {% if post.image %}
+                <img src="{{ post.image.url }}" alt="Post image" class="post-image"><br>
+            {% endif %}
+            <p class="caption"><strong>Caption:</strong> {{ post.caption }}</p>
+            <small class="post-date">Posted on {{ post.created_at }}</small>
+
+            <div class="likes-section">
+                <strong>Likes:</strong> {{ post.like_set.count }}
+            </div>
+
+            {% if post.first_liker %}
+                <p>
+                    <strong>Liked by:</strong>
+                    <a href="{% url 'profile' post.first_liker.username %}">{{ post.first_liker.username }}</a>
+                    {% if post.other_likers_count > 0 %}
+                        and {{ post.other_likers_count }} other{{ post.other_likers_count|pluralize }} liked this
+                    {% else %}
+                        liked this
+                    {% endif %}
+                </p>
+            {% else %}
+                <p>No likes yet.</p>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'toggle_like' post.id %}" class="like-form">
+                    {% csrf_token %}
+                    {% if post.id in user_liked_posts %}
+                        <button type="submit" class="unlike">💔 Unlike</button>
+                    {% else %}
+                        <button type="submit">❤️ Like</button>
+                    {% endif %}
+                </form>
+            {% endif %}
+
+            <div class="comments-section">
+                <h4>Comments:</h4>
+                {% for comment in post.comment_set.all %}
+                    <div class="comment">
+                        <strong>{{ comment.user.username }}:</strong> {{ comment.content }}
+                    </div>
+                {% empty %}
+                    <p>No comments yet.</p>
+                {% endfor %}
+
+                {% if user.is_authenticated %}
+                    <form method="post" action="{% url 'add_comment' post.id %}" class="comment-form">
+                        {% csrf_token %}
+                        <input type="text" name="content" placeholder="Add a comment..." required>
+                        <button type="submit">Post</button>
+                    </form>
+                {% endif %}
+            </div>
+
+            {% if post.user == request.user %}
+                <div class="post-actions">
+                    <a href="{% url 'edit_post' post.id %}">Edit</a>
+                    <a href="{% url 'delete_post' post.id %}">Delete</a>
+                </div>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p style="text-align:center; font-style: italic; color: #777;">No posts yet.</p>
+    {% endfor %}
+</div>
 
 {% endblock %}

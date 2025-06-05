@@ -2,10 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     bio = models.TextField(blank=True)
     profile_pic = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
-    followers = models.ManyToManyField(User, related_name='followed_profiles', blank=True)  # Optional followers
+    followers = models.ManyToManyField(User, related_name='following', blank=True)  # Optional followers
 
     def __str__(self):
         return self.user.username

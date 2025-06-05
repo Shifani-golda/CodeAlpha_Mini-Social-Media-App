@@ -1,6 +1,84 @@
 {% extends 'socialapp/base.html' %}
 {% block content %}
 
+<style>
+    h2 {
+        font-size: 1.8rem;
+        color: #d32f2f;
+        margin-bottom: 15px;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    p {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        color: #444;
+        text-align: center;
+    }
+
+    img {
+        display: block;
+        margin: 0 auto 20px auto;
+        border-radius: 12px;
+        max-width: 100%;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease;
+    }
+
+    img:hover {
+        transform: scale(1.05);
+    }
+
+    strong {
+        color: #222;
+        font-weight: 600;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    button[type="submit"] {
+        background-color: #d32f2f;
+        border: none;
+        color: white;
+        padding: 12px 28px;
+        font-size: 1rem;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 700;
+        box-shadow: 0 6px 15px rgba(211, 47, 47, 0.5);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #9b2424;
+        transform: translateY(-3px);
+    }
+
+    a {
+        align-self: center;
+        padding: 12px 28px;
+        background-color: #777;
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(119, 119, 119, 0.5);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    a:hover {
+        background-color: #555;
+        transform: translateY(-3px);
+    }
+</style>
+
 <h2>Delete Post</h2>
 <p>Are you sure you want to delete this post?</p>
 
@@ -16,3 +94,4 @@
 </form>
 
 {% endblock %}
+
