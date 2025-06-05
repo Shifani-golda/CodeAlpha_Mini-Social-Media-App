@@ -13,7 +13,7 @@ Minglo is a blend of the words "Mini" and "Glow". The idea is to represent a sma
 
 ## 📜 Project Description
 
-This project is part of my CodeAlpha Internship, intended to demonstrate my skills in **Full Stack Web Development**, **Django Framework**, **UI/UX design**, **Version Control-Git**.
+This project is part of my CodeAlpha Internship, intended to demonstrate my skills in **Full Stack Web Development**, **Django Framework**, **UI/UX design** and **Version Control-Git**.
 
 Minglo is a full-stack mini social media platform built using Django. It focuses on simplicity, usability, and core social features:
 
