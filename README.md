@@ -120,35 +120,37 @@ minisocialapp
 
  ### 🏠 Home Page
  
- ![Home Page]
- ![Home Page]
+ ![Home Page](screenshots/home.png)
+
+ ![Home Page](screenshots/home1.png)
  
  
 
  ### 🔐 Login Page
  
- ![Login Page]
+ ![Login Page](screenshots/login.png)
 
 
  ### 🔐 Register Page
  
- ![Register Page]
+ ![Register Page](screenshots/register.png)
+ ![Register Page](screenshots/register1.png)
 
  
 
  ### 👤 Profile Page
  
- ![Profile Page]
- ![Profile Page]
+ ![Profile Page](screenshots/profile.png)
+ ![Profile Page](screenshots/profile1.png)
  
 
  ### 📝 Create Post
  
- ![Create_post Page]
+ ![Create_post Page](screenshots/create_post.png)
  
 
- ### 👯 Follow System
- ![Follow Page]
+ ### 👯 Following List
+ ![Follow Page](screenshots/following_list.png)
 
 
 
