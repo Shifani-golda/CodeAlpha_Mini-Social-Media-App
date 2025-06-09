@@ -11,6 +11,14 @@ Minglo is a blend of the words "Mini" and "Glow". The idea is to represent a sma
 
 
 
+
+### 🔗 Live Demo
+🌐 [Visit Minglo App](https://minglo-connect.onrender.com)
+
+
+
+
+
 ## 📜 Project Description
 
 This project is part of my CodeAlpha Internship, intended to demonstrate my skills in **Full Stack Web Development**, **Django Framework**, **UI/UX design** and **Version Control-Git**.
