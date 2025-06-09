@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-n5i-8-5o9ukvy=4+5f-+rf+9-f06^3mz9jjb+y&*&6(!cg8l!i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['minglo-connect.onrender.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
